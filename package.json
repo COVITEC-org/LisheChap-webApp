@@ -1,0 +1,29 @@
+{
+  "name": "lishechap",
+  "version": "0.1.0",
+  "private": true,
+  "description": "LisheChap: Swahili-first food discovery, real-time availability verification, ordering and delivery-support platform.",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently --kill-others-on-fail --names server,client --prefix-colors yellow,cyan \"npm run dev -w server\" \"npm run dev -w client\"",
+    "build": "npm run build -w server && npm run build -w client",
+    "start": "npm run start -w server",
+    "test": "npm run test -w server && npm run test -w client",
+    "lint": "npm run lint -w server && npm run lint -w client",
+    "db:migrate": "npm run db:migrate -w server",
+    "db:deploy": "npm run db:deploy -w server",
+    "db:studio": "npm run db:studio -w server"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  },
+  "overrides": {
+    "deepmerge-ts": "^7.1.6"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}
