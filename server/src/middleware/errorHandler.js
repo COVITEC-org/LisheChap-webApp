@@ -28,8 +28,8 @@ function normalizeError(err) {
 /**
  * Central error handler. Stack traces and internal error messages are logged
  * server-side only and never returned to the client, in any environment.
+ * Express identifies error handlers by their four-argument signature.
  */
-// eslint-disable-next-line no-unused-vars
 export function errorHandler(err, req, res, _next) {
   const appError = normalizeError(err);
 

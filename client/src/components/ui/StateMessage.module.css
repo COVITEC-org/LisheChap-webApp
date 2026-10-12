@@ -1,0 +1,89 @@
+.state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  padding: clamp(var(--space-8), 6vw, var(--space-12)) var(--space-5);
+  border: 1.5px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  text-align: center;
+  background: var(--surface);
+  animation: global(fade-in) var(--duration-slow) var(--ease-out) both;
+}
+
+.iconWrap {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+}
+
+.empty .iconWrap {
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.error {
+  border-style: solid;
+  border-color: var(--danger-soft);
+}
+
+.error .iconWrap {
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  max-width: 46ch;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-snug);
+  color: var(--text);
+}
+
+.description {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.compact {
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
+  text-align: left;
+}
+
+.compact .iconWrap {
+  flex: none;
+  width: 44px;
+  height: 44px;
+}
+
+.compact .text {
+  flex: 1;
+  max-width: none;
+  gap: 2px;
+}
+
+.compact .title {
+  font-size: var(--text-base);
+}
+
+@media (max-width: 479px) {
+  .compact {
+    flex-wrap: wrap;
+  }
+
+  .compact .action {
+    width: 100%;
+  }
+}

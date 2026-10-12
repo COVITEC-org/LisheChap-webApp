@@ -1,0 +1,225 @@
+/*
+ * LisheChap design tokens.
+ *
+ * Every color, size, radius, shadow and motion value used by the UI is defined
+ * here. Components reference tokens only, never raw values, so the brand can be
+ * re-tuned in one place.
+ *
+ * Themes: light is the default (:root). Dark mode is applied by setting
+ * data-theme="dark" on <html> (see public/theme-init.js and ThemeProvider).
+ *
+ * Contrast (WCAG 2.1): --primary on white and --on-primary on --primary both
+ * pass AA for normal text in each theme. --primary-bright is decorative only
+ * (gradients, icons, highlights) and must not carry body text.
+ */
+
+:root {
+  /* Brand */
+  --primary: #cf4d0a;
+  --primary-hover: #b8430a;
+  --primary-dark: #8a3108;
+  --primary-bright: #f97316;
+  --primary-soft: #ffede0;
+  --primary-soft-hover: #ffe1cc;
+  --on-primary: #ffffff;
+  --secondary: #1f6f4a;
+  --secondary-soft: #e3f3ea;
+  --on-secondary: #ffffff;
+
+  /* Surfaces */
+  --background: #fff8f2;
+  --background-accent: #fff1e5;
+  --surface: #ffffff;
+  --surface-muted: #fbf3ec;
+  --surface-elevated: #ffffff;
+  --surface-inverse: #1f1611;
+  --overlay: rgb(31 22 17 / 0.48);
+
+  /* Text */
+  --text: #1f1611;
+  --text-muted: #6b5a4e;
+  --text-subtle: #8e7b6d;
+  --text-inverse: #fff8f2;
+
+  /* Lines */
+  --border: #efe2d6;
+  --border-strong: #dccabb;
+  --focus-ring: #f97316;
+
+  /* Status */
+  --success: #15803d;
+  --success-soft: #e3f6e9;
+  --on-success: #ffffff;
+  --warning: #a16207;
+  --warning-soft: #fdf3d7;
+  --danger: #c02626;
+  --danger-soft: #fde8e8;
+  --on-danger: #ffffff;
+  --info: #1d63c9;
+  --info-soft: #e5effd;
+
+  /* Glass (use sparingly: header, floating panels, promo, dashboard widgets) */
+  --glass-bg: rgb(255 255 255 / 0.72);
+  --glass-bg-strong: rgb(255 255 255 / 0.86);
+  --glass-border: rgb(255 255 255 / 0.6);
+  --glass-blur: 16px;
+
+  /* Imagery */
+  --image-placeholder-from: #ffe3cc;
+  --image-placeholder-to: #ffc9a0;
+  --image-placeholder-icon: #cf4d0a;
+  --image-placeholder-shine: rgb(255 255 255 / 0.35);
+  --image-scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 40%, rgb(20 12 6 / 0.72) 100%);
+
+  /* Gradients */
+  --gradient-brand: linear-gradient(135deg, #f97316 0%, #cf4d0a 100%);
+  --gradient-warm: radial-gradient(120% 120% at 0% 0%, #ffe8d6 0%, #fff8f2 55%);
+  --gradient-hero: radial-gradient(80% 90% at 85% 10%, rgb(249 115 22 / 0.22) 0%, rgb(249 115 22 / 0) 60%),
+    radial-gradient(60% 70% at 0% 100%, rgb(31 111 74 / 0.1) 0%, rgb(31 111 74 / 0) 60%);
+  --skeleton-base: #f3e6da;
+  --skeleton-shine: #fbf3ec;
+
+  /* Shadows (warm-tinted) */
+  --shadow-xs: 0 1px 2px rgb(64 30 8 / 0.06);
+  --shadow-sm: 0 2px 6px rgb(64 30 8 / 0.06), 0 1px 2px rgb(64 30 8 / 0.04);
+  --shadow-md: 0 8px 24px rgb(64 30 8 / 0.08), 0 2px 6px rgb(64 30 8 / 0.05);
+  --shadow-lg: 0 18px 48px rgb(64 30 8 / 0.12), 0 4px 12px rgb(64 30 8 / 0.06);
+  --shadow-primary: 0 10px 24px rgb(207 77 10 / 0.28);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans Variable', system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+  --font-display: 'Bricolage Grotesque Variable', 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-md: 1.125rem;
+  --text-lg: 1.25rem;
+  --text-xl: clamp(1.375rem, 1.2rem + 0.8vw, 1.625rem);
+  --text-2xl: clamp(1.625rem, 1.35rem + 1.3vw, 2.125rem);
+  --text-3xl: clamp(2rem, 1.5rem + 2.4vw, 3rem);
+  --text-4xl: clamp(2.375rem, 1.6rem + 3.6vw, 4rem);
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --weight-extrabold: 800;
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.55;
+  --tracking-tight: -0.02em;
+
+  /* Spacing (4px base) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --section-gap: clamp(2.5rem, 1.5rem + 4vw, 5rem);
+  --gutter: clamp(1rem, 0.5rem + 2vw, 2rem);
+
+  /* Radius */
+  --radius-xs: 6px;
+  --radius-sm: 10px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
+  --radius-full: 999px;
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-narrow: 760px;
+  --header-height: 68px;
+  --tabbar-height: 64px;
+  --control-height-sm: 36px;
+  --control-height: 44px;
+  --control-height-lg: 52px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --duration-fast: 120ms;
+  --duration-base: 200ms;
+  --duration-slow: 320ms;
+
+  /* Layers */
+  --z-sticky: 100;
+  --z-header: 200;
+  --z-overlay: 900;
+  --z-modal: 1000;
+  --z-toast: 1100;
+
+  color-scheme: light;
+}
+
+:root[data-theme='dark'] {
+  --primary: #ff8a3d;
+  --primary-hover: #ffa263;
+  --primary-dark: #e2661c;
+  --primary-bright: #ff9a52;
+  --primary-soft: rgb(255 138 61 / 0.14);
+  --primary-soft-hover: rgb(255 138 61 / 0.22);
+  --on-primary: #1a0e05;
+  --secondary: #4cc38a;
+  --secondary-soft: rgb(76 195 138 / 0.14);
+  --on-secondary: #06130c;
+
+  --background: #110c09;
+  --background-accent: #1a120d;
+  --surface: #1b1410;
+  --surface-muted: #221a15;
+  --surface-elevated: #261d18;
+  --surface-inverse: #fff8f2;
+  --overlay: rgb(0 0 0 / 0.62);
+
+  --text: #f8f1ea;
+  --text-muted: #b9a99c;
+  --text-subtle: #8f7f73;
+  --text-inverse: #1f1611;
+
+  --border: rgb(255 236 220 / 0.09);
+  --border-strong: rgb(255 236 220 / 0.18);
+  --focus-ring: #ff9a52;
+
+  --success: #4ade80;
+  --success-soft: rgb(74 222 128 / 0.13);
+  --on-success: #0b1f12;
+  --warning: #fbbf24;
+  --warning-soft: rgb(251 191 36 / 0.13);
+  --danger: #f87171;
+  --danger-soft: rgb(248 113 113 / 0.14);
+  --on-danger: #2a0a0a;
+  --info: #60a5fa;
+  --info-soft: rgb(96 165 250 / 0.14);
+
+  --glass-bg: rgb(27 20 16 / 0.66);
+  --glass-bg-strong: rgb(27 20 16 / 0.84);
+  --glass-border: rgb(255 236 220 / 0.1);
+
+  --image-placeholder-from: #3a2416;
+  --image-placeholder-to: #24170f;
+  --image-placeholder-icon: #ff9a52;
+  --image-placeholder-shine: rgb(255 255 255 / 0.05);
+  --image-scrim: linear-gradient(180deg, rgb(0 0 0 / 0) 35%, rgb(0 0 0 / 0.78) 100%);
+
+  --gradient-brand: linear-gradient(135deg, #ff9a52 0%, #e2661c 100%);
+  --gradient-warm: radial-gradient(120% 120% at 0% 0%, #2a1a10 0%, #110c09 60%);
+  --gradient-hero: radial-gradient(80% 90% at 85% 10%, rgb(255 138 61 / 0.18) 0%, rgb(255 138 61 / 0) 60%),
+    radial-gradient(60% 70% at 0% 100%, rgb(76 195 138 / 0.08) 0%, rgb(76 195 138 / 0) 60%);
+  --skeleton-base: #241b16;
+  --skeleton-shine: #31261f;
+
+  --shadow-xs: 0 1px 2px rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 2px 6px rgb(0 0 0 / 0.35), 0 1px 2px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 10px 28px rgb(0 0 0 / 0.42), 0 2px 6px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 22px 56px rgb(0 0 0 / 0.55), 0 4px 12px rgb(0 0 0 / 0.35);
+  --shadow-primary: 0 10px 28px rgb(255 138 61 / 0.22);
+
+  color-scheme: dark;
+}

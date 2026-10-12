@@ -1,0 +1,47 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: var(--surface-muted);
+  isolation: isolate;
+}
+
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 30% 25%, var(--image-placeholder-shine) 0, transparent 45%),
+    linear-gradient(135deg, var(--image-placeholder-from), var(--image-placeholder-to));
+}
+
+.placeholderIcon {
+  width: clamp(28px, 22%, 56px);
+  height: auto;
+  color: var(--image-placeholder-icon);
+  opacity: 0.55;
+}
+
+.image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform 600ms var(--ease-out);
+}
+
+.loaded {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  :global([data-zoom-parent]:hover) .zoom .image,
+  :global([data-zoom-parent]:focus-within) .zoom .image {
+    transform: scale(1.06);
+  }
+}

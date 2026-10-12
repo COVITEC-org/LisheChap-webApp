@@ -1,0 +1,8 @@
+.loader {
+  display: grid;
+  place-items: center;
+  min-height: 50vh;
+  color: var(--primary);
+  /* Avoid a flash for fast loads: appear only if loading takes a moment. */
+  animation: global(fade-in) var(--duration-slow) var(--ease-out) 150ms both;
+}

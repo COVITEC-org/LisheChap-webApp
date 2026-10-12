@@ -1,0 +1,205 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+  padding-block: var(--space-10) var(--space-4);
+}
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-4);
+  max-width: 760px;
+}
+
+.introBadges,
+.introControls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.title {
+  font-size: var(--text-3xl);
+}
+
+.lead {
+  font-size: var(--text-md);
+  color: var(--text-muted);
+}
+
+.sampleNotice {
+  font-size: var(--text-sm);
+  color: var(--text-subtle);
+}
+
+.section {
+  min-width: 0;
+}
+
+.stackLg {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+/* Brand */
+.brandRow {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+}
+
+.brandTile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-5);
+  min-height: 140px;
+}
+
+.brandTileInverse {
+  background: var(--surface-inverse);
+}
+
+/* Colors */
+.colorGroups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.swatches {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.swatchColor {
+  height: 64px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+
+.swatchName {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+/* Typography */
+.typeCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.typeRow {
+  display: grid;
+  gap: var(--space-2);
+  align-items: baseline;
+}
+
+@media (min-width: 768px) {
+  .typeRow {
+    grid-template-columns: 120px 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.typeToken {
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+}
+
+.typeDisplay {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-overflow: ellipsis;
+}
+
+.typeBody {
+  color: var(--text-muted);
+}
+
+/* Inputs */
+.formGrid {
+  display: grid;
+  gap: var(--space-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+}
+
+.spanAll {
+  grid-column: 1 / -1;
+}
+
+/* Cards */
+.cardTitle {
+  margin-bottom: var(--space-2);
+}
+
+/* Glass showcase: glass needs something behind it to be meaningful. */
+.glassStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 340px;
+  padding: var(--space-8) var(--space-4);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 15% 20%, var(--primary-bright) 0, transparent 38%),
+    radial-gradient(circle at 85% 80%, var(--secondary) 0, transparent 40%),
+    radial-gradient(circle at 70% 15%, var(--warning) 0, transparent 30%),
+    var(--surface-inverse);
+}
+
+.glassCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 440px;
+}
+
+.glassCard > :last-child {
+  align-self: stretch;
+}
+
+.glassTitle {
+  font-size: var(--text-xl);
+}
+
+/* States */
+.spinnerTile {
+  display: grid;
+  place-items: center;
+  min-height: 200px;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--primary);
+}
+
+.feedback {
+  min-height: 1.5em;
+  margin-top: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.motionCard {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
