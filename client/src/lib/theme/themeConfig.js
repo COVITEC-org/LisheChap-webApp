@@ -5,8 +5,8 @@ export const DEFAULT_THEME_PREFERENCE = 'system';
 
 // Browser UI color (address bar on mobile) per resolved theme. Mirrors --background.
 export const THEME_COLORS = {
-  light: '#fff8f2',
-  dark: '#110c09',
+  light: '#f9fafb',
+  dark: '#0f1114',
 };
 
 export const THEME_TRANSITION_MS = 360;

@@ -51,10 +51,12 @@ h4 {
 
 h1 {
   font-size: var(--text-4xl);
+  font-weight: var(--weight-extrabold);
 }
 
 h2 {
   font-size: var(--text-2xl);
+  font-weight: var(--weight-extrabold);
 }
 
 h3 {

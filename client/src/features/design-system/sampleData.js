@@ -21,6 +21,8 @@ export const SAMPLE_RESTAURANTS = [
   {
     id: 'sample-1',
     name: 'Mama Asha Kitchen',
+    cuisines: ['Kiafrika', 'Wali', 'Kuku'],
+    closesAt: '22:00',
     rating: 4.7,
     reviewCount: 128,
     distanceKm: 0.85,
@@ -35,6 +37,8 @@ export const SAMPLE_RESTAURANTS = [
   {
     id: 'sample-2',
     name: 'Campus Bites',
+    cuisines: ['Burger', 'Pizza', 'Vinywaji'],
+    closesAt: '21:00',
     rating: 4.3,
     reviewCount: 56,
     distanceKm: 2.14,
@@ -49,6 +53,8 @@ export const SAMPLE_RESTAURANTS = [
   {
     id: 'sample-3',
     name: 'Spicy Corner',
+    cuisines: ['Kuku', 'Chipsi', 'Vyakula vya nyumbani'],
+    closesAt: '22:00',
     rating: 4.5,
     reviewCount: 203,
     distanceKm: 3.4,
@@ -63,6 +69,7 @@ export const SAMPLE_RESTAURANTS = [
   {
     id: 'sample-4',
     name: 'Tasty Meals',
+    cuisines: ['Pizza', 'Pasta', 'Chipsi'],
     rating: 0,
     reviewCount: 0,
     distanceKm: 5.9,
@@ -85,6 +92,7 @@ export const SAMPLE_FOODS = [
     restaurantName: 'Mama Asha Kitchen',
     status: 'AVAILABLE',
     isFeatured: true,
+    rating: 4.7,
   },
   {
     id: 'food-2',
@@ -93,6 +101,7 @@ export const SAMPLE_FOODS = [
     price: 6000,
     restaurantName: 'Spicy Corner',
     status: 'AVAILABLE',
+    rating: 4.5,
   },
   {
     id: 'food-3',
@@ -101,6 +110,7 @@ export const SAMPLE_FOODS = [
     price: 9500,
     restaurantName: 'Foodie Hub',
     status: 'UNAVAILABLE',
+    rating: 4.6,
   },
   {
     id: 'food-4',
@@ -109,5 +119,6 @@ export const SAMPLE_FOODS = [
     price: 8500,
     restaurantName: 'Mama Asha Kitchen',
     status: 'AVAILABLE',
+    rating: 4.4,
   },
 ];

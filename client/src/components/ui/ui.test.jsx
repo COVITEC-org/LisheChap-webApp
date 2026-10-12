@@ -8,6 +8,7 @@ import { TextField } from './Field.jsx';
 import { Modal } from './Modal.jsx';
 import { SmartImage } from './SmartImage.jsx';
 import { ErrorState } from './StateMessage.jsx';
+import { FilterChips } from './FilterChips.jsx';
 
 beforeEach(() => {
   stubMatchMedia(false);
@@ -123,6 +124,29 @@ describe('SmartImage', () => {
     fireEvent.error(image);
 
     expect(container.querySelector('img')).toBeNull();
+  });
+});
+
+describe('FilterChips', () => {
+  it('marks the active filter and reports changes', () => {
+    const onChange = vi.fn();
+    renderWithProviders(
+      <FilterChips
+        label="Chuja migahawa"
+        value="all"
+        onChange={onChange}
+        options={[
+          { value: 'all', label: 'Zote' },
+          { value: 'open', label: 'Wazi sasa' },
+        ]}
+      />,
+    );
+
+    expect(screen.getByRole('group', { name: 'Chuja migahawa' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Zote' })).toHaveAttribute('aria-pressed', 'true');
+    expect(screen.getByRole('button', { name: 'Wazi sasa' })).toHaveAttribute('aria-pressed', 'false');
+    fireEvent.click(screen.getByRole('button', { name: 'Wazi sasa' }));
+    expect(onChange).toHaveBeenCalledWith('open');
   });
 });
 

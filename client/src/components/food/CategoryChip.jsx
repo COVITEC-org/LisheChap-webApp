@@ -19,7 +19,7 @@ export function CategoryChip({ label, icon: Icon = UtensilsCrossed, imageUrl, se
         {imageUrl ? (
           <SmartImage src={imageUrl} alt="" ratio="1 / 1" fallbackIcon={Icon} />
         ) : (
-          <Icon size={26} strokeWidth={1.8} />
+          <Icon size={28} strokeWidth={1.8} />
         )}
       </span>
       <span className={styles.label}>{label}</span>

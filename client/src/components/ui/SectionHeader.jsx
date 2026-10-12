@@ -1,3 +1,5 @@
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router';
 import { cx } from '../../lib/cx.js';
 import styles from './SectionHeader.module.css';
 
@@ -14,5 +16,27 @@ export function SectionHeader({ id, eyebrow, title, subtitle, action, as: Headin
       </div>
       {action && <div className={styles.action}>{action}</div>}
     </div>
+  );
+}
+
+/**
+ * "Ona zote" style link placed in a SectionHeader action. Must point to a real
+ * destination: `to` for an app route, or `href` for an in-page anchor.
+ */
+export function SeeAllLink({ to, href, children }) {
+  const content = (
+    <>
+      {children}
+      <ArrowRight size={16} strokeWidth={2.4} aria-hidden="true" />
+    </>
+  );
+  return href ? (
+    <a href={href} className={styles.seeAll}>
+      {content}
+    </a>
+  ) : (
+    <Link to={to} className={styles.seeAll}>
+      {content}
+    </Link>
   );
 }

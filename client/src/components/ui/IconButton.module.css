@@ -50,13 +50,15 @@
   background: var(--primary-soft-hover);
 }
 
+/* Icon-only, so the vivid reference orange meets the 3:1 non-text contrast rule. */
 .solid {
   color: var(--on-primary);
-  background: var(--primary);
+  background: var(--primary-bright);
+  box-shadow: var(--shadow-primary);
 }
 
 .solid:hover:not(:disabled) {
-  background: var(--primary-hover);
+  background: var(--primary-bright-hover);
 }
 
 .glass {

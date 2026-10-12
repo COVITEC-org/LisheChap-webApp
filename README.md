@@ -100,7 +100,7 @@ If PostgreSQL is not running, the app still boots. The status card shows the dat
 
 ### Design system
 
-During development, open <http://localhost:5173/mfumo-wa-muundo> to see every design token and component (buttons, fields, badges, cards, restaurant and food cards, loading, empty and error states, modal, drawer) in light and dark mode. The page uses fictional sample data and is not included in production builds. Colors, spacing, typography and motion are all defined in `client/src/styles/tokens.css`; see [ARCHITECTURE.md](ARCHITECTURE.md#design-system-phase-2).
+During development, open <http://localhost:5173/mfumo-wa-muundo> to see every design token and component (buttons, fields, filters, badges, cards, restaurant and food cards, payment method picker, loading, empty and error states, modal, drawer) in light and dark mode. The page uses fictional sample data and is not included in production builds. The visual direction follows the reference `client/src/assets/ui-layout.jpg`. Colors, spacing, typography and motion are all defined in `client/src/styles/tokens.css`; see [ARCHITECTURE.md](ARCHITECTURE.md#design-system-phase-2).
 
 ## Commands
 
@@ -189,6 +189,6 @@ In production the server refuses to start without `JWT_SECRET` and `SESSION_SECR
 
 These integrations are designed in [ARCHITECTURE.md](ARCHITECTURE.md) and are built in later phases. They are not active yet.
 
-- **Payments (Phase 8):** each provider (Airtel Money, M-Pesa, Mixx by Yas, HaloPesa, CRDB, NMB) gets an adapter implementing `initiatePayment`, `verifyPayment`, `handleCallback`, `refundPayment` and `getTransactionStatus`. Credentials go in `PAYMENT_PROVIDER_KEYS`, and callbacks are verified server-side. Place the provider logos in `client/public/assets/payments/`.
+- **Payments (Phase 8):** each provider (Airtel Money, M-Pesa, Mixx by Yas, HaloPesa, CRDB, NMB) gets an adapter implementing `initiatePayment`, `verifyPayment`, `handleCallback`, `refundPayment` and `getTransactionStatus`. Credentials go in `PAYMENT_PROVIDER_KEYS`, and callbacks are verified server-side. Provider logos live in `client/src/assets/mobile-payments-logo/` and are already used by `PaymentMethodPicker`.
 - **Maps (Phase 9):** set `GOOGLE_MAPS_API_KEY` and restrict it by HTTP referrer and API. Without a key the UI uses external navigation links and does not show embedded maps.
 - **Notifications and PWA (Phase 9):** generate VAPID keys (`npx web-push generate-vapid-keys`) and set the `WEB_PUSH_*` variables. Push notifications need HTTPS (localhost is exempt) and user permission.

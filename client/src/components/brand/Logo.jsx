@@ -4,7 +4,7 @@ import styles from './Logo.module.css';
 
 // Brand mark colors are fixed (they must match public/favicon.svg and
 // public/assets/brand/*.svg), so they live here rather than in theme tokens.
-const MARK_GRADIENT = ['#ff8c3a', '#e2560b'];
+const MARK_GRADIENT = ['#ff7a33', '#e04f0c'];
 const MARK_FOREGROUND = '#ffffff';
 
 /**

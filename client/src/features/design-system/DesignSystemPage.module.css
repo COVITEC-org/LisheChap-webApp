@@ -60,7 +60,7 @@
 }
 
 .brandTileInverse {
-  background: var(--surface-inverse);
+  background: var(--hero-bg);
 }
 
 /* Colors */
@@ -160,7 +160,7 @@
     radial-gradient(circle at 15% 20%, var(--primary-bright) 0, transparent 38%),
     radial-gradient(circle at 85% 80%, var(--secondary) 0, transparent 40%),
     radial-gradient(circle at 70% 15%, var(--warning) 0, transparent 30%),
-    var(--surface-inverse);
+    var(--hero-bg);
 }
 
 .glassCard {
@@ -202,4 +202,15 @@
   flex-wrap: wrap;
   align-items: center;
   gap: var(--space-4);
+}
+
+.subheading {
+  font-size: var(--text-md);
+}
+
+/* Row-style food list: one column on phones, two from tablet up. */
+.rowList {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
 }
