@@ -1,0 +1,146 @@
+.group {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.legend {
+  margin-bottom: var(--space-3);
+  padding: 0;
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 210px), 1fr));
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 68px;
+  padding: var(--space-3);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  cursor: pointer;
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.option:hover {
+  border-color: var(--border-strong);
+}
+
+/* The real radio covers the card so clicks and keyboard focus work natively. */
+.input {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.option:has(.input:focus-visible) {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.selected,
+.selected:hover {
+  border-color: var(--primary-bright);
+  background: var(--primary-soft);
+  box-shadow: var(--shadow-sm);
+}
+
+.unavailable {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.unavailable .input {
+  cursor: not-allowed;
+}
+
+/* Brand logos always sit on white so their colors are faithful in both themes. */
+.logo {
+  display: grid;
+  flex: none;
+  place-items: center;
+  overflow: hidden;
+  width: 64px;
+  height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--logo-tile-bg);
+}
+
+.logo {
+  position: relative;
+}
+
+/* Absolutely sized to the tile; a percentage height inside a grid cell would
+   otherwise resolve to the image's own size and overflow (looking cropped). */
+.logo img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  padding: 2px;
+}
+
+.logoCover img {
+  object-fit: cover;
+  padding: 0;
+}
+
+.logoText {
+  display: flex;
+  gap: 4px;
+  padding: 0 6px;
+  font-size: var(--text-xs);
+  font-weight: var(--weight-extrabold);
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+.text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.name {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+}
+
+.type {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.check {
+  flex: none;
+  color: var(--primary-bright);
+  opacity: 0;
+  transform: scale(0.6);
+  transition:
+    opacity var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-spring);
+}
+
+.selected .check {
+  opacity: 1;
+  transform: scale(1);
+}

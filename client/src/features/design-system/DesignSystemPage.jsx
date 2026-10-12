@@ -22,6 +22,9 @@ import { CategoryChip, CategoryRail } from '../../components/food/CategoryChip.j
 import { FoodCard } from '../../components/food/FoodCard.jsx';
 import { RestaurantCard } from '../../components/food/RestaurantCard.jsx';
 import { ThemeSwitcher } from '../../components/navigation/ThemeControls.jsx';
+import { PaymentMethodPicker } from '../../components/payments/PaymentMethodPicker.jsx';
+import { PAYMENT_METHODS } from '../../constants/paymentMethods.js';
+import { FilterChips } from '../../components/ui/FilterChips.jsx';
 import { Badge } from '../../components/ui/Badge.jsx';
 import { Button } from '../../components/ui/Button.jsx';
 import { Card } from '../../components/ui/Card.jsx';
@@ -29,7 +32,7 @@ import { Drawer } from '../../components/ui/Drawer.jsx';
 import { SelectField, TextAreaField, TextField } from '../../components/ui/Field.jsx';
 import { IconButton } from '../../components/ui/IconButton.jsx';
 import { Modal } from '../../components/ui/Modal.jsx';
-import { SectionHeader } from '../../components/ui/SectionHeader.jsx';
+import { SectionHeader, SeeAllLink } from '../../components/ui/SectionHeader.jsx';
 import { Spinner } from '../../components/ui/Spinner.jsx';
 import { EmptyState, ErrorState } from '../../components/ui/StateMessage.jsx';
 import { useTranslation } from '../../lib/i18n/useTranslation.js';
@@ -49,10 +52,10 @@ const REGIONS = ['Dar es Salaam', 'Arusha', 'Dodoma', 'Mwanza', 'Mbeya', 'Zanzib
   label: name,
 }));
 
-function Section({ id, title, children }) {
+function Section({ id, title, action, children }) {
   return (
     <section className={styles.section} aria-labelledby={id}>
-      <SectionHeader id={id} title={title} />
+      <SectionHeader id={id} title={title} action={action} />
       {children}
     </section>
   );
@@ -67,8 +70,27 @@ export default function DesignSystemPage() {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [lastAction, setLastAction] = useState('');
+  const [filter, setFilter] = useState('all');
+  const [favorites, setFavorites] = useState(() => new Set(['sample-1']));
+  const [paymentMethod, setPaymentMethod] = useState('MPESA');
 
   const selectedLabel = SAMPLE_CATEGORIES.find((category) => category.id === selectedCategory)?.label;
+  const filterOptions = [
+    { value: 'all', label: s('filterAll') },
+    { value: 'open', label: s('filterOpen') },
+    { value: 'topRated', label: s('filterTopRated') },
+    { value: 'fastest', label: s('filterFastest') },
+    { value: 'delivery', label: s('filterDelivery') },
+  ];
+
+  function toggleFavorite(id) {
+    setFavorites((current) => {
+      const next = new Set(current);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  }
 
   function simulateSend() {
     setSending(true);
@@ -288,14 +310,27 @@ export default function DesignSystemPage() {
         </p>
       </Section>
 
-      <Section id="ds-restaurants" title={t('designSystem.sections.restaurants')}>
-        <div className="card-grid" style={{ '--card-min': '280px' }}>
+      <Section id="ds-filters" title={t('designSystem.sections.filters')}>
+        <FilterChips label={s('filterLabel')} options={filterOptions} value={filter} onChange={setFilter} />
+        <p className={styles.feedback} aria-live="polite">
+          {s('filterChosen', { name: filterOptions.find((option) => option.value === filter)?.label })}
+        </p>
+      </Section>
+
+      <Section
+        id="ds-restaurants"
+        title={t('designSystem.sections.restaurants')}
+        action={<SeeAllLink href="#ds-foods">{s('seeAll')}</SeeAllLink>}
+      >
+        <div className="card-grid" style={{ '--card-min': '260px' }}>
           {SAMPLE_RESTAURANTS.map(({ food, availabilityStatus, ...restaurant }) => (
             <RestaurantCard
               key={restaurant.id}
               restaurant={restaurant}
               food={food}
               availabilityStatus={availabilityStatus}
+              isFavorite={favorites.has(restaurant.id)}
+              onToggleFavorite={() => toggleFavorite(restaurant.id)}
               onVerify={() => setLastAction(s('verifyClicked', { name: restaurant.name }))}
             />
           ))}
@@ -306,16 +341,41 @@ export default function DesignSystemPage() {
       </Section>
 
       <Section id="ds-foods" title={t('designSystem.sections.foods')}>
-        <div className="card-grid" style={{ '--card-min': '240px' }}>
-          {SAMPLE_FOODS.map((food) => (
-            <FoodCard
-              key={food.id}
-              food={food}
-              actionLabel={s('findRestaurants')}
-              onSelect={() => setLastAction(s('foodSelected', { name: food.name }))}
-            />
-          ))}
+        <div className={styles.stackLg}>
+          <div className="card-grid" style={{ '--card-min': '240px' }}>
+            {SAMPLE_FOODS.map((food) => (
+              <FoodCard
+                key={food.id}
+                food={food}
+                actionLabel={s('findRestaurants')}
+                onSelect={() => setLastAction(s('foodSelected', { name: food.name }))}
+              />
+            ))}
+          </div>
+          <h3 className={styles.subheading}>{s('rowFoods')}</h3>
+          <div className={styles.rowList}>
+            {SAMPLE_FOODS.map((food) => (
+              <FoodCard
+                key={food.id}
+                food={food}
+                layout="row"
+                actionLabel={s('addToOrder', { name: food.name })}
+                onSelect={() => setLastAction(s('foodSelected', { name: food.name }))}
+              />
+            ))}
+          </div>
         </div>
+      </Section>
+
+      <Section id="ds-payments" title={t('designSystem.sections.payments')}>
+        <Card padding="lg">
+          <PaymentMethodPicker label={s('paymentLabel')} value={paymentMethod} onChange={setPaymentMethod} />
+          <p className={styles.feedback} aria-live="polite">
+            {s('paymentChosen', {
+              name: PAYMENT_METHODS.find((method) => method.code === paymentMethod)?.name,
+            })}
+          </p>
+        </Card>
       </Section>
 
       <Section id="ds-states" title={t('designSystem.sections.states')}>

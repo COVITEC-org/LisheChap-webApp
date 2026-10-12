@@ -71,6 +71,30 @@ describe('RestaurantCard', () => {
     expect(screen.getByText('Mpishi hayupo mtandaoni')).toBeInTheDocument();
   });
 
+  it('shows cuisines, closing time and an initials avatar like the reference card', () => {
+    renderWithProviders(
+      <RestaurantCard restaurant={{ ...RESTAURANT, cuisines: ['Kiafrika', 'Wali'], closesAt: '22:00' }} />,
+    );
+
+    expect(screen.getByRole('list', { name: 'Aina za vyakula' })).toHaveTextContent('KiafrikaWali');
+    expect(screen.getByText('Inafunga saa 22:00')).toBeInTheDocument();
+    expect(screen.getByText('MA')).toBeInTheDocument();
+  });
+
+  it('renders the favorite toggle only with a handler and reports its state', () => {
+    const { unmount } = renderWithProviders(<RestaurantCard restaurant={RESTAURANT} />);
+    expect(screen.queryByRole('button', { name: /vipendwa/ })).not.toBeInTheDocument();
+    unmount();
+
+    const onToggleFavorite = vi.fn();
+    renderWithProviders(<RestaurantCard restaurant={RESTAURANT} isFavorite onToggleFavorite={onToggleFavorite} />);
+    const heart = screen.getByRole('button', { name: 'Ondoa kwenye vipendwa' });
+
+    expect(heart).toHaveAttribute('aria-pressed', 'true');
+    fireEvent.click(heart);
+    expect(onToggleFavorite).toHaveBeenCalledOnce();
+  });
+
   it('links the whole card to the restaurant page when href is given', () => {
     renderWithProviders(<RestaurantCard restaurant={RESTAURANT} href="/migahawa/mama-asha" />);
     expect(screen.getByRole('link', { name: 'Mama Asha Kitchen' })).toHaveAttribute('href', '/migahawa/mama-asha');
@@ -93,6 +117,31 @@ describe('FoodCard', () => {
     );
     expect(screen.getByRole('button', { name: 'Tafuta migahawa' })).toBeDisabled();
     expect(screen.getByText('Haipatikani kwa sasa')).toBeInTheDocument();
+  });
+});
+
+describe('FoodCard row layout', () => {
+  const FOOD = { name: 'Chipsi Kuku', description: 'Chipsi na kuku', price: 7000, status: 'AVAILABLE', rating: 4.7 };
+
+  it('shows price and rating with a labelled add button', () => {
+    const onSelect = vi.fn();
+    renderWithProviders(<FoodCard food={FOOD} layout="row" onSelect={onSelect} actionLabel="Ongeza Chipsi Kuku" />);
+
+    expect(screen.getByText('TSh 7,000')).toBeInTheDocument();
+    expect(screen.getByText('4.7')).toBeInTheDocument();
+    fireEvent.click(screen.getByRole('button', { name: 'Ongeza Chipsi Kuku' }));
+    expect(onSelect).toHaveBeenCalledOnce();
+  });
+
+  it('has no add button without a handler and disables it for unavailable food', () => {
+    const { unmount } = renderWithProviders(<FoodCard food={FOOD} layout="row" />);
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
+    unmount();
+
+    renderWithProviders(
+      <FoodCard food={{ ...FOOD, status: 'UNAVAILABLE' }} layout="row" onSelect={vi.fn()} actionLabel="Ongeza" />,
+    );
+    expect(screen.getByRole('button', { name: 'Ongeza' })).toBeDisabled();
   });
 });
 

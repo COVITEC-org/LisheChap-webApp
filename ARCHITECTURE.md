@@ -147,10 +147,13 @@ client/src/
 | Base and utilities | `styles/base.css`, `styles/utilities.css` | Reset, typography, focus ring, reduced motion, `container`, `card-grid`, `visually-hidden`, skip link. |
 | Motion | `styles/animations.css` | Shared keyframes. CSS modules must reference them as `animation: global(fade-in) ...`, otherwise CSS modules rename them and the animation silently does nothing (a test enforces this). |
 | Theme | `lib/theme/`, `public/theme-init.js` | Preference `system`, `light` or `dark`, persisted under `lishechap.theme`. The init script sets `data-theme` before first paint. |
-| Primitives | `components/ui/` | Button, IconButton, fields, SegmentedControl, Card, Badge, Rating, SmartImage, Skeleton, Spinner, Empty/Error states, Modal, Drawer, SectionHeader. |
-| Domain components | `components/food/` | RestaurantCard, FoodCard, CategoryChip/Rail, AvailabilityBadge, card skeletons. |
+| Primitives | `components/ui/` | Button, IconButton, fields, SegmentedControl, FilterChips, Card, Badge, Rating, SmartImage, Skeleton, Spinner, Empty/Error states, Modal, Drawer, SectionHeader with SeeAllLink. |
+| Payments UI | `components/payments/`, `constants/paymentMethods.js` | PaymentMethodPicker using the supplied provider logos from `assets/mobile-payments-logo/`. Selection only; payments are initiated server-side (Phase 8). |
+| Domain components | `components/food/` | RestaurantCard, FoodCard (card and row layouts), CategoryChip/Rail, AvailabilityBadge, card skeletons. |
 | Navigation | `components/navigation/` | AppHeader, MobileTabBar, AppFooter, theme controls, `navItems.js` (only real routes are listed). |
 | Brand | `components/brand/Logo.jsx`, `public/favicon.svg`, `public/assets/brand/` | Mark, horizontal logo, compact mark. |
+
+Visual reference: `client/src/assets/ui-layout.jpg` (design reference only, never imported). Orange usage: `--primary-bright` (the reference orange) for icon-only controls, indicators and large headings; `--primary` wherever white text sits on orange, to keep WCAG AA.
 
 Rules: icons come from Lucide only (no Unicode symbols as icons); glass is reserved for the header, floating panels, promos and dashboard widgets, with a solid fallback where `backdrop-filter` is unsupported; actions render only when wired to a real handler; animation uses transform and opacity and respects `prefers-reduced-motion`. A development-only reference page at `/mfumo-wa-muundo` shows every token and component in both themes; it is stripped from production builds.
 

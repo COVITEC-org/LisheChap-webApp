@@ -2,99 +2,176 @@
   display: flex;
   flex-direction: column;
   gap: var(--section-gap);
+  padding-top: var(--space-6);
 }
+
+/* Hero banner and "how it works" column, side by side on large screens. */
+.top {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .top {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 360px);
+    align-items: stretch;
+  }
+}
+
+/* ---------- Hero ---------- */
 
 .hero {
   position: relative;
   isolation: isolate;
-  padding: clamp(var(--space-10), 8vw, var(--space-20)) 0 0;
-}
-
-/* Decorative glow that extends under the header and fades out softly (no hard edge). */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: calc(var(--header-height) * -1) 0 -45%;
-  z-index: -1;
-  background: var(--gradient-hero);
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent);
-  mask-image: linear-gradient(to bottom, black 55%, transparent);
-}
-
-.heroText {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--space-5);
-  max-width: 760px;
+  gap: var(--space-4);
+  overflow: hidden;
+  min-height: clamp(340px, 46vw, 460px);
+  padding: clamp(var(--space-6), 5vw, var(--space-12));
+  border-radius: var(--radius-xl);
+  color: var(--hero-text);
+  background: var(--hero-bg);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--hero-glow);
+  pointer-events: none;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary-bright);
 }
 
 .title {
+  display: flex;
+  flex-direction: column;
+  max-width: 14ch;
   font-size: var(--text-4xl);
+  font-weight: var(--weight-extrabold);
+  color: var(--hero-text);
+}
+
+/* Large heading text: the vivid reference orange meets contrast on the dark banner. */
+.titleAccent {
+  color: var(--primary-bright);
 }
 
 .subtitle {
-  max-width: 58ch;
+  max-width: 46ch;
   font-size: var(--text-md);
-  color: var(--text-muted);
+  color: var(--hero-muted);
 }
 
-.sectionTitle {
-  margin-bottom: var(--space-6);
-  font-size: var(--text-2xl);
+/* Glass chip, echoing the reference's floating "Fast Pickup" card. */
+.responseChip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: auto;
+  padding: var(--space-3) var(--space-4) var(--space-3) var(--space-3);
+  border: 1px solid var(--glass-dark-border);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-sm);
+  color: var(--hero-text);
+  background: var(--glass-dark-bg);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
 }
+
+.responseIcon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  color: var(--on-primary);
+  background: var(--primary-bright);
+}
+
+.responseBody {
+  display: block;
+  font-size: var(--text-xs);
+  color: var(--hero-muted);
+}
+
+/* ---------- Steps ---------- */
 
 .steps {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: var(--space-4);
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  padding: var(--space-5);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+
+.stepsTitle {
+  font-size: var(--text-lg);
+}
+
+.stepList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
 }
 
 .step {
-  position: relative;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-2);
-  padding: var(--space-6);
-  border: 1px solid var(--border);
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
   border-radius: var(--radius-lg);
-  background: var(--surface);
-  box-shadow: var(--shadow-xs);
+  background: var(--surface-muted);
   animation: global(rise-in) var(--duration-slow) var(--ease-out) var(--step-delay) both;
 }
 
-.stepIcon {
+.stepNumber {
   display: grid;
+  flex: none;
   place-items: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: var(--space-2);
-  border-radius: var(--radius-md);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  font-size: var(--text-md);
+  font-weight: var(--weight-extrabold);
   color: var(--on-primary);
-  background: var(--gradient-brand);
+  background: var(--primary-bright);
   box-shadow: var(--shadow-primary);
 }
 
-.stepNumber {
-  position: absolute;
-  top: var(--space-4);
-  right: var(--space-5);
-  font-family: var(--font-display);
-  font-size: var(--text-3xl);
-  font-weight: var(--weight-extrabold);
-  line-height: 1;
-  color: var(--primary-soft-hover);
+.stepText {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .stepTitle {
-  font-size: var(--text-md);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
 }
 
 .stepBody {
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
   color: var(--text-muted);
 }
+
+/* ---------- Foundation status ---------- */
 
 .foundation {
   display: grid;

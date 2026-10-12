@@ -28,8 +28,8 @@ Find food, find nearby active restaurants, request confirmation, KIPO / HAKIPO, 
 
 - The repository was empty: no existing code, packages, assets or environment files, so nothing had to be preserved or migrated.
 - Machine: Node.js 22.13, npm 10.9, Git. No local PostgreSQL, `psql` or Docker. You need a PostgreSQL server to run the app (see README).
-- Payment provider logos (`airtel-money-logo.png`, `halopesa-logo.png`, `m-pesa-logo.png`, `Mixx_by_Yas-logo.jpg`) are not in the repository yet. They go in `client/public/assets/payments/` before Phase 8.
-- The UI visual reference image is not in the repository. Phase 2 was built from the visual direction written in the project brief (warm orange, large food imagery, rounded cards, soft shadows, selective glass). If the image is added later (for example under `docs/reference/`), the palette can be tuned in `client/src/styles/tokens.css` alone.
+- Payment provider logos (`airtel-money-logo.png`, `halopesa-logo.png`, `m-pesa-logo.png`, `Mixx_by_Yas-logo.jpg`) were supplied later in `client/src/assets/mobile-payments-logo/` and are imported from there (bundled with hashed file names). No logos were supplied for CRDB and NMB.
+- The UI visual reference image was supplied later as `client/src/assets/ui-layout.jpg`. It is a design reference only (not imported by the app, so it is never bundled), and Phase 2 was reworked against it (see "Phase 2 rework" below).
 
 ## Phase 1: delivered
 
@@ -44,7 +44,7 @@ Find food, find nearby active restaurants, request confirmation, KIPO / HAKIPO, 
 
 - **Design tokens** (`client/src/styles/tokens.css`): brand, surface, text, border, status, glass, imagery, gradient, shadow, typography, spacing, radius, layout, motion and z-index tokens. Light theme on `:root`, an intentionally designed dark theme on `[data-theme='dark']` (warm near-black surfaces, brighter orange accents, retuned status colors and shadows). Text and button color pairs were contrast-checked against WCAG AA.
 - **Theme system:** `ThemeProvider` with system, light and dark preferences, persisted in `localStorage`, following live OS changes, and applied before first paint by `public/theme-init.js` (no flash, CSP compatible). Header toggle and a three-way switcher in the mobile menu.
-- **Typography:** self-hosted variable fonts (Bricolage Grotesque for display, Plus Jakarta Sans for text) via Fontsource, so there are no third-party font requests and they work offline for the PWA.
+- **Typography:** self-hosted variable font (Plus Jakarta Sans) via Fontsource, so there are no third-party font requests and it works offline for the PWA.
 - **Brand:** LisheChap logo mark (a bowl with a confirmation check, "food, confirmed"), horizontal logo, compact mobile mark, `favicon.svg`, and static SVGs in `public/assets/brand/`.
 - **Components** (`client/src/components/`): Button, IconButton, TextField, TextAreaField, SelectField, SegmentedControl, Card (including a glass variant), Badge (with live pulse), Rating, SmartImage (reserved aspect ratio, lazy loading, fade-in, branded fallback), Skeleton, Spinner, PageLoader, EmptyState, ErrorState, Modal (bottom sheet on phones), Drawer, SectionHeader, AppHeader (glass on scroll), MobileTabBar (floating glass), AppFooter, Logo, plus the food components RestaurantCard, FoodCard, CategoryChip and CategoryRail, AvailabilityBadge, and card skeletons.
 - **Business honesty in components:** action buttons render only when a real handler is passed; RestaurantCard never shows KIPO unless it receives an actual confirmation status; FoodCard labels menu status ("Kwenye menyu") separately from live confirmation.
@@ -54,6 +54,24 @@ Find food, find nearby active restaurants, request confirmation, KIPO / HAKIPO, 
 - **Image structure:** `client/public/assets/images/{foods,restaurants,categories,promotions}` with sizing guidelines. Real photography only needs a `src`.
 - **Visual inspection:** screenshots at 320, 375, 390, 768 and 1280 px in light and dark themes, plus the open drawer and the scrolled glass header. No horizontal overflow at any width. Issues found and fixed: clipped button descenders, a hard edge on the hero glow, uneven food card footers, truncated category labels, stray background under the footer on mobile, and CSS modules silently renaming shared animation names (which would have disabled most animations).
 - **Tests:** 46 client tests (12 from Phase 1 plus theme persistence and system following, Button, accessible fields, Modal focus management, SmartImage fallback, ErrorState retry, RestaurantCard and FoodCard business rules, CategoryChip, formatting, and design guards that fail on unscoped keyframes, raw hex colors in component styles, or em dashes in source).
+
+## Phase 2 rework against the supplied reference
+
+Once `ui-layout.jpg` and the payment logos arrived, the design system was re-aligned with the reference (brand, wording, photography and logo were not copied):
+
+- **Palette:** reference orange `#f05c14` as `--primary-bright` (icon-only buttons, selected tiles, step numbers, active indicators, large headings); `--primary` stays a deeper orange wherever white text sits on orange, so labels keep WCAG AA. Neutral near-white page background, white cards with soft neutral shadows, dark bold prices, gold rating stars (`--rating`), dark footer and dark hero banner tokens. Dark theme retuned to match.
+- **Typography:** Plus Jakarta Sans only (ExtraBold headings), closer to the reference's geometric sans; Bricolage Grotesque removed (one less font download).
+- **Header:** solid white bar, plain text links with an orange underline on the active page (glass only after scrolling).
+- **Mobile tab bar:** solid full-width bottom bar with orange active icon and indicator.
+- **Footer:** dark, with a quick links column (real routes only).
+- **Category tiles:** rounded icon tiles with the label underneath; selected tile filled orange.
+- **Filter chips:** new `FilterChips` pill row ("Zote", "Wazi sasa", "Ukadiriaji wa juu").
+- **Restaurant card:** compact reference layout: logo avatar overlapping the image (initials fallback), name, rating with prep time, cuisines line, green "Wazi, Inafunga saa 22:00" line, distance chip on the image, optional favorite heart (only when a handler is passed). LisheChap's chef presence, delivery and live confirmation badges remain.
+- **Food card:** dark prices and a new `layout="row"` list variant (square image, name, description, price, rating, orange "+" button), as in the reference's popular dishes and menu lists.
+- **Section headers:** `SeeAllLink` ("Ona zote" with arrow).
+- **Payment methods:** `PaymentMethodPicker` with the supplied M-Pesa, Airtel Money, Mixx by Yas and HaloPesa logos (always on a white tile, never cropped), CRDB and NMB as neutral name tiles. Selection UI only: no payment is started from the client.
+- **Home (foundation scope):** reference top-section composition: dark rounded hero with a two-tone heading and a glass "Majibu ndani ya dakika 3" chip, beside a "how it works" column with orange numbered steps.
+- **Verified:** screenshots at 320, 390, 768 and 1280 px in light and dark; no horizontal overflow. A logo-cropping bug (percentage height inside a grid tile) was found and fixed. 55 client tests pass.
 
 ## Known items carried forward
 

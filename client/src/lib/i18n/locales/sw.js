@@ -31,11 +31,16 @@ const sw = {
   footer: {
     tagline: 'Jua kama chakula unachotaka kipo kabla hujaenda mgahawani.',
     copyright: '© {{year}} LisheChap. Haki zote zimehifadhiwa.',
+    quickLinks: 'Viungo vya haraka',
   },
   home: {
     hero: {
       eyebrow: 'Uthibitisho wa chakula papo hapo',
       title: 'Chakula unachotaka, karibu nawe.',
+      titleLine1: 'Chakula unachotaka,',
+      titleLine2: 'karibu nawe.',
+      responseTitle: 'Majibu ndani ya dakika 3',
+      responseBody: 'Mpishi anajibu KIPO au HAKIPO',
       subtitle:
         'Tafuta chakula, thibitisha kama kipo kwenye mgahawa ulio karibu, kisha agiza au elekea mgahawani bila kupoteza muda.',
     },
@@ -77,7 +82,11 @@ const sw = {
     chefInactive: 'Mpishi hayupo mtandaoni',
     deliveryAvailable: 'Uwasilishaji upo',
     pickupOnly: 'Chukua mwenyewe',
-    prepTime: 'Dakika {{min}} hadi {{max}}',
+    prepTime: 'Dak. {{min}}-{{max}}',
+    closesAt: 'Inafunga saa {{time}}',
+    cuisines: 'Aina za vyakula',
+    addFavorite: 'Ongeza kwenye vipendwa',
+    removeFavorite: 'Ondoa kwenye vipendwa',
     verifyFood: 'Thibitisha Chakula',
     cannotVerify: 'Mgahawa huu hauwezi kujibu kwa sasa.',
   },
@@ -87,6 +96,13 @@ const sw = {
       AVAILABLE: 'Kwenye menyu',
       UNAVAILABLE: 'Haipatikani kwa sasa',
     },
+  },
+  payments: {
+    types: {
+      MOBILE_MONEY: 'Pesa kwa simu',
+      BANK: 'Benki',
+    },
+    unavailable: 'Haipatikani kwa sasa',
   },
   availability: {
     status: {
@@ -142,6 +158,8 @@ const sw = {
       states: 'Hali za kupakia, tupu na hitilafu',
       overlays: 'Dirisha ibukizi na droo',
       motion: 'Mwendo',
+      filters: 'Vichujio',
+      payments: 'Njia za malipo',
     },
     samples: {
       displayHeading: 'Chakula unachotaka, karibu nawe.',
@@ -185,6 +203,18 @@ const sw = {
       motionNote:
         'Mwendo unatumia transform na opacity tu, na unazimwa kiotomatiki kwa watumiaji waliochagua kupunguza mwendo.',
       chosenCategory: 'Umechagua: {{name}}',
+      filterLabel: 'Chuja migahawa',
+      filterAll: 'Zote',
+      filterOpen: 'Wazi sasa',
+      filterTopRated: 'Ukadiriaji wa juu',
+      filterFastest: 'Haraka zaidi',
+      filterDelivery: 'Uwasilishaji',
+      filterChosen: 'Kichujio: {{name}}',
+      seeAll: 'Ona zote',
+      paymentLabel: 'Chagua njia ya malipo',
+      paymentChosen: 'Njia uliyochagua: {{name}}',
+      addToOrder: 'Ongeza {{name}}',
+      rowFoods: 'Vyakula maarufu (mpangilio wa orodha)',
       verifyClicked: 'Umebofya kuthibitisha {{name}}. Ombi halisi litaunganishwa katika awamu ya 6.',
       foodSelected: 'Umechagua {{name}}.',
       findRestaurants: 'Tafuta migahawa',
