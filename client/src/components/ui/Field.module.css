@@ -1,0 +1,147 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.label {
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  color: var(--text);
+}
+
+.required {
+  margin-left: 2px;
+  color: var(--danger);
+}
+
+.control {
+  --control-h: var(--control-height);
+
+  position: relative;
+  display: flex;
+  align-items: center;
+  min-height: var(--control-h);
+  border: 1.5px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  transition:
+    border-color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+.control:hover {
+  border-color: var(--text-subtle);
+}
+
+.control:focus-within {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+.sm {
+  --control-h: var(--control-height-sm);
+}
+
+.lg {
+  --control-h: var(--control-height-lg);
+  border-radius: var(--radius-lg);
+}
+
+.input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  min-height: calc(var(--control-h) - 3px);
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: inherit;
+  font-size: var(--text-base);
+  color: var(--text);
+  background: transparent;
+  outline: none;
+}
+
+.input::placeholder {
+  color: var(--text-subtle);
+  opacity: 1;
+}
+
+.input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Native search clear button inherits theme colors poorly; hide it for consistency. */
+.input[type='search']::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+.withIcon .input {
+  padding-left: calc(var(--space-4) + 18px + var(--space-2));
+}
+
+.icon {
+  position: absolute;
+  left: var(--space-4);
+  color: var(--text-subtle);
+  pointer-events: none;
+}
+
+.control:focus-within .icon {
+  color: var(--primary);
+}
+
+.multiline {
+  align-items: stretch;
+}
+
+.textarea {
+  min-height: 0;
+  padding: var(--space-3) var(--space-4);
+  line-height: var(--leading-normal);
+  resize: vertical;
+}
+
+.select {
+  padding-right: calc(var(--space-4) + 22px);
+  appearance: none;
+  cursor: pointer;
+}
+
+.select option {
+  color: var(--text);
+  background: var(--surface);
+}
+
+.chevron {
+  position: absolute;
+  right: var(--space-3);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.hint,
+.error {
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+}
+
+.hint {
+  color: var(--text-muted);
+}
+
+.error {
+  font-weight: var(--weight-medium);
+  color: var(--danger);
+}
+
+.hasError .control {
+  border-color: var(--danger);
+}
+
+.hasError .control:focus-within {
+  box-shadow: 0 0 0 4px var(--danger-soft);
+}

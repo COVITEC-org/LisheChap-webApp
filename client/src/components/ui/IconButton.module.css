@@ -1,0 +1,87 @@
+.iconButton {
+  --icon-button-size: var(--control-height);
+
+  position: relative;
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  width: var(--icon-button-size);
+  height: var(--icon-button-size);
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  color: var(--text);
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.iconButton:active:not(:disabled) {
+  transform: scale(0.92);
+}
+
+.iconButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sm {
+  --icon-button-size: var(--control-height-sm);
+}
+
+.lg {
+  --icon-button-size: var(--control-height-lg);
+}
+
+.ghost:hover:not(:disabled) {
+  background: var(--surface-muted);
+}
+
+.soft {
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.soft:hover:not(:disabled) {
+  background: var(--primary-soft-hover);
+}
+
+.solid {
+  color: var(--on-primary);
+  background: var(--primary);
+}
+
+.solid:hover:not(:disabled) {
+  background: var(--primary-hover);
+}
+
+.glass {
+  background: var(--glass-bg-strong);
+  border-color: var(--glass-border);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(1.4);
+}
+
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border: 2px solid var(--surface);
+  border-radius: var(--radius-full);
+  font-size: 0.625rem;
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--on-primary);
+  background: var(--primary);
+  animation: global(scale-in) var(--duration-base) var(--ease-spring) both;
+}

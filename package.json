@@ -20,9 +20,6 @@
   "devDependencies": {
     "concurrently": "^9.1.2"
   },
-  "overrides": {
-    "deepmerge-ts": "^7.1.6"
-  },
   "engines": {
     "node": ">=22.12.0"
   }

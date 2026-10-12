@@ -1,0 +1,124 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--section-gap);
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  padding: clamp(var(--space-10), 8vw, var(--space-20)) 0 0;
+}
+
+/* Decorative glow that extends under the header and fades out softly (no hard edge). */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: calc(var(--header-height) * -1) 0 -45%;
+  z-index: -1;
+  background: var(--gradient-hero);
+  pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent);
+  mask-image: linear-gradient(to bottom, black 55%, transparent);
+}
+
+.heroText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+  max-width: 760px;
+}
+
+.title {
+  font-size: var(--text-4xl);
+}
+
+.subtitle {
+  max-width: 58ch;
+  font-size: var(--text-md);
+  color: var(--text-muted);
+}
+
+.sectionTitle {
+  margin-bottom: var(--space-6);
+  font-size: var(--text-2xl);
+}
+
+.steps {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+}
+
+.step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-6);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-xs);
+  animation: global(rise-in) var(--duration-slow) var(--ease-out) var(--step-delay) both;
+}
+
+.stepIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: var(--space-2);
+  border-radius: var(--radius-md);
+  color: var(--on-primary);
+  background: var(--gradient-brand);
+  box-shadow: var(--shadow-primary);
+}
+
+.stepNumber {
+  position: absolute;
+  top: var(--space-4);
+  right: var(--space-5);
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--weight-extrabold);
+  line-height: 1;
+  color: var(--primary-soft-hover);
+}
+
+.stepTitle {
+  font-size: var(--text-md);
+}
+
+.stepBody {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.foundation {
+  display: grid;
+  gap: var(--space-5);
+  align-items: start;
+}
+
+@media (min-width: 960px) {
+  .foundation {
+    grid-template-columns: 1fr minmax(380px, 460px);
+  }
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-radius: var(--radius-lg);
+  color: var(--info);
+  background: var(--info-soft);
+}
+
+.notice svg {
+  flex: none;
+  margin-top: 3px;
+}

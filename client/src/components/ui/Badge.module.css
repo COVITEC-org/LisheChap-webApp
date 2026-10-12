@@ -1,0 +1,104 @@
+.badge {
+  --badge-color: var(--text-muted);
+  --badge-bg: var(--surface-muted);
+  --badge-solid-text: var(--text-inverse);
+
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 6px;
+  max-width: 100%;
+  min-height: 26px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.sm {
+  min-height: 22px;
+  padding: 0 var(--space-2);
+  font-size: 0.6875rem;
+}
+
+.neutral {
+  --badge-color: var(--text-muted);
+  --badge-bg: var(--surface-muted);
+  --badge-solid-bg: var(--surface-inverse);
+}
+
+.primary {
+  --badge-color: var(--primary);
+  --badge-bg: var(--primary-soft);
+  --badge-solid-bg: var(--primary);
+  --badge-solid-text: var(--on-primary);
+}
+
+.success {
+  --badge-color: var(--success);
+  --badge-bg: var(--success-soft);
+  --badge-solid-bg: var(--success);
+  --badge-solid-text: var(--on-success);
+}
+
+.warning {
+  --badge-color: var(--warning);
+  --badge-bg: var(--warning-soft);
+  --badge-solid-bg: var(--warning);
+}
+
+.danger {
+  --badge-color: var(--danger);
+  --badge-bg: var(--danger-soft);
+  --badge-solid-bg: var(--danger);
+  --badge-solid-text: var(--on-danger);
+}
+
+.info {
+  --badge-color: var(--info);
+  --badge-bg: var(--info-soft);
+  --badge-solid-bg: var(--info);
+}
+
+.soft {
+  color: var(--badge-color);
+  background: var(--badge-bg);
+}
+
+.solid {
+  color: var(--badge-solid-text);
+  background: var(--badge-solid-bg);
+}
+
+.glass {
+  color: var(--badge-color);
+  background: var(--glass-bg-strong);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(12px) saturate(1.5);
+  -webkit-backdrop-filter: blur(12px) saturate(1.5);
+}
+
+.neutral.glass {
+  color: var(--text);
+}
+
+.dot {
+  position: relative;
+  flex: none;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+}
+
+.pulse::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: currentColor;
+  animation: global(pulse-ring) 1.6s var(--ease-out) infinite;
+}

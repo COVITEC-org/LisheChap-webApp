@@ -1,0 +1,139 @@
+.button {
+  --button-height: var(--control-height);
+  --button-padding: var(--space-5);
+
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: var(--button-height);
+  padding: 0 var(--button-padding);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  letter-spacing: 0.005em;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+}
+
+.button:active:not(:disabled, [aria-disabled='true']) {
+  transform: scale(0.97);
+}
+
+.button:disabled,
+.button[aria-disabled='true'] {
+  cursor: not-allowed;
+  opacity: 0.5;
+  box-shadow: none;
+}
+
+.button.loading {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.label {
+  overflow: hidden;
+  /* Line box tall enough for descenders (g, y, p) while clipping long labels. */
+  padding-block: 0.15em;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* Sizes */
+.sm {
+  --button-height: var(--control-height-sm);
+  --button-padding: var(--space-4);
+  font-size: var(--text-xs);
+}
+
+.md {
+  font-size: var(--text-sm);
+}
+
+.lg {
+  --button-height: var(--control-height-lg);
+  --button-padding: var(--space-6);
+  font-size: var(--text-base);
+}
+
+/* Variants */
+.primary {
+  color: var(--on-primary);
+  background: var(--primary);
+  box-shadow: var(--shadow-primary);
+}
+
+.primary:hover:not(:disabled, [aria-disabled='true']) {
+  color: var(--on-primary);
+  background: var(--primary-hover);
+}
+
+.secondary {
+  color: var(--primary);
+  background: var(--primary-soft);
+}
+
+.secondary:hover:not(:disabled, [aria-disabled='true']) {
+  color: var(--primary);
+  background: var(--primary-soft-hover);
+}
+
+.outline {
+  color: var(--text);
+  background: var(--surface);
+  border-color: var(--border-strong);
+}
+
+.outline:hover:not(:disabled, [aria-disabled='true']) {
+  color: var(--text);
+  border-color: var(--primary);
+}
+
+.ghost {
+  color: var(--text);
+  background: transparent;
+}
+
+.ghost:hover:not(:disabled, [aria-disabled='true']) {
+  color: var(--text);
+  background: var(--surface-muted);
+}
+
+.danger {
+  color: var(--on-danger);
+  background: var(--danger);
+}
+
+.danger:hover:not(:disabled, [aria-disabled='true']) {
+  color: var(--on-danger);
+  filter: brightness(0.92);
+}
+
+.success {
+  color: var(--on-success);
+  background: var(--success);
+}
+
+.success:hover:not(:disabled, [aria-disabled='true']) {
+  color: var(--on-success);
+  filter: brightness(0.92);
+}

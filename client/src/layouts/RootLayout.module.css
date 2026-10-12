@@ -1,0 +1,21 @@
+.shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--gradient-warm);
+  background-attachment: fixed;
+}
+
+.main {
+  flex: 1;
+  outline: none;
+}
+
+/* Leave room for the floating bottom navigation on small screens.
+   The footer consumes this space so its background reaches the bottom edge. */
+@media (max-width: 767px) {
+  .withTabBar {
+    --tabbar-clearance: calc(var(--tabbar-height) + var(--space-6) + env(safe-area-inset-bottom));
+  }
+}
